@@ -6,12 +6,7 @@ on:
 jobs:
   hyperparameter_tuning:
     name: Hyperparameter Tuning
-    runs-on:
-      - machine
-      - gpu=T4
-      - cpu=4
-      - ram=16
-      - architecture=x64
+    runs-on: machine/id=${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.learning_rate }}-${{ matrix.batch_size }}/gpu=T4/cpu=4/ram=16/architecture=x64
     timeout-minutes: 30
     strategy:
       fail-fast: false
@@ -19,10 +14,10 @@ jobs:
         learning_rate: [0.001, 0.0005]
         batch_size: [32, 64]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python 3.10
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -56,10 +51,10 @@ jobs:
     name: Compare Tuning Performance
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python 3.10
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 

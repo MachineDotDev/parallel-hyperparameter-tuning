@@ -80,3 +80,20 @@ This repository is available under the [MIT License](LICENSE).
 - This repository is currently open for use as a template. While public forks are encouraged, we are not accepting Pull Requests at this time.
 
 _For questions or concerns, please open an issue._
+
+## Machine runtime limits
+
+These workflows run on Machine GPU runners. Install the GitHub App on this
+repository before starting a job. Start with $10 of free GPU time. No charge,
+no commitment.
+
+Unpaid teams can run one job at a time, for up to 30 minutes. Buy compute or a
+plan before running a longer training or evaluation job. A larger
+`timeout-minutes` value in GitHub doesn't remove the platform limit.
+
+The matrix has four jobs. On a free team, set `strategy.max-parallel: 1` to
+submit them one at a time; otherwise queued jobs can hit the admission timeout.
+Paid concurrency depends on your team. Each matrix leg has a distinct runner
+label so another leg cannot take its runner.
+
+See [billing and limits](https://machine.dev/docs/guides/billing/) for current limits.
